@@ -1,0 +1,68 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  vars:
+    # Apache Variables
+    apache_user: "{{ lookup('env', 'APACHE_RUN_USER') }}"
+    apache_group: "{{ lookup('env', 'APACHE_RUN_GROUP') }}"
+    apache_log_dir: "{{ lookup('env', 'APACHE_LOG_DIR') }}"
+    apache_lock_dir: "{{ lookup('env', 'APACHE_LOCK_DIR') }}"
+    apache_pid_file: "{{ lookup('env', 'APACHE_PID_FILE') }}"
+    # iTop Variables
+    itop_version: "{{ lookup('env', 'ITOP__VERSION') }}" # 2.3.0-beta
+    itop_filename: "{{ lookup('env', 'ITOP__FILENAME') }}" # iTop-2.3.0-beta-2777.zip
+
+
+  tasks:
+  - name: Check if iTop is installed
+    stat:
+      path=/var/www/html/images/itop-logo.png
+    register: iTop_is_here
+
+  - name: Prepare iTop {{ itop_version }} installation
+    file:
+      path={{ item }}
+      state=directory
+    with_items:
+      - /var/www
+      - /var/www/html
+      - /var/www/html/web
+      - /var/www/html/web/images
+    when: (iTop_is_here.stat.exists == False)
+    register: iTop_temp_directories
+
+  - name: Quick and Dirty BugFix
+    # https://sourceforge.net/p/itop/tickets/1252/
+    copy: src="../../bug_fixes/database exi.png" dest="/var/www/html/web/images/database exi.png"
+    when: (itop_version == '2.3.0-beta') and
+          (iTop_is_here.stat.exists == False)
+
+  - name: Download iTop {{ itop_version }}
+    get_url:
+      url=http://downloads.sourceforge.net/project/itop/itop/{{ itop_version }}/{{ itop_filename }}?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fitop%2Ffiles%2F&ts=1464790823&use_mirror=iweb
+      dest=/tmp/iTop.zip
+      mode=0440
+    when: (iTop_is_here.stat.exists == False)
+    register: get_iTop
+
+  - name: Install iTop {{ itop_version }} files
+    unarchive:
+      src=/tmp/iTop.zip
+      dest=/var/www/html
+      copy=no
+    when: (iTop_is_here.stat.exists == False) and get_iTop|changed
+    register: install_iTop
+    notify: chown dir
+
+  handlers:
+    - name: chown dir
+      file:
+        path=/var/www/html
+        recurse=yes
+        owner="www-data"
+        group="www-data"
+      notify: restart Apache
+
+    - name: restart Apache
+      command: sv t apache
