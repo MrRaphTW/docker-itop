@@ -22,3 +22,16 @@ In this example, we'll use the following values :
  teamworksi/docker-itop`
  
  Ansible will trigger [iTop](http://www.combodo.com/itop) setup at the first run !
+ 
+ 
+ # Mapping [iTop](http://www.combodo.com/itop)'s folder on host
+ 
+ You'll have to create the directory on host first, then you'll be able to run the image as bellow :
+ 
+ `docker run --name=itop \
+ -p 8080:80 \
+ -e ITOP__VERSION=2.3.0-beta \
+ -e ITOP__FILENAME=iTop-2.3.0-beta-2777.zip \
+ -v </path/to/iTop/on/host>:/var/www/html \
+ -it \
+ teamworksi/docker-itop`
