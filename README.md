@@ -1,11 +1,11 @@
-# iTop Docker image
+# [iTop](http://www.combodo.com/itop) Docker image
 
-This image is built using [phusion/baseimage](https://hub.docker.com/r/phusion/baseimage/) and use [Ansible](https://www.ansible.com/) to deploy the iTop version you want.
+This image is built using [phusion/baseimage](https://hub.docker.com/r/phusion/baseimage/) and use [Ansible](https://www.ansible.com/) to deploy the [iTop](http://www.combodo.com/itop) version you want.
 
 
-# Identify iTop version and file name
+# Identify [iTop](http://www.combodo.com/itop) version and file name
 
-First of all, you'll have to get iTop's version and file name, you'll find those informations in the [iTop's SourceForge project](https://sourceforge.net/projects/itop/files/itop/).
+First of all, you'll have to get [iTop](http://www.combodo.com/itop)'s version and file name, you'll find those informations in the [iTop's SourceForge project](https://sourceforge.net/projects/itop/files/itop/).
 
 In this example, we'll use the following values :
 
@@ -21,4 +21,4 @@ In this example, we'll use the following values :
  -it \
  teamworksi/docker-itop`
  
- Ansible will trigger iTop setup at the first run !
+ Ansible will trigger [iTop](http://www.combodo.com/itop) setup at the first run !
