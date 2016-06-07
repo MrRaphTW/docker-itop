@@ -17,3 +17,4 @@ create_image:
 #        - rm /tmp/.ssh_key_temp.$CI_PROJECT_ID
 #        - rm /tmp/.ssh_exec.$CI_PROJECT_ID
         
+        
