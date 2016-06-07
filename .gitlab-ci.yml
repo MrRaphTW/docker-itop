@@ -4,4 +4,4 @@ stages:
 create_image:
     stage: build
     script:
-        - cat < $github_key
+        - echo "$github_key"
