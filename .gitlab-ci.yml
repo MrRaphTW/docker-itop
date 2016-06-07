@@ -1,0 +1,21 @@
+stages:
+    - build
+
+create_image:
+    stage: build
+    script:
+        - git remote remove github
+#        - echo "ssh -i /tmp/.ssh_key_temp.$CI_PROJECT_ID  \$@" > /tmp/.ssh_exec.$CI_PROJECT_ID
+#        - chmod 700 /tmp/.ssh_exec.$CI_PROJECT_ID
+#        - export GIT_SSH=/tmp/.ssh_exec.$CI_PROJECT_ID
+#        - touch /tmp/.ssh_key_temp.$CI_PROJECT_ID
+#        - chmod 700 /tmp/.ssh_key_temp.$CI_PROJECT_ID
+#        - echo "$github_key" >> /tmp/.ssh_key_temp.$CI_PROJECT_ID
+        - git remote add github $GIT_HUB_URL
+        - git config --global user.email "noreply@teamwork.net"
+        - git config --global user.name "TeamWork"        
+#        - git pull github master
+        - git push -f github master
+        - git remote remove github
+#        - rm /tmp/.ssh_key_temp.$CI_PROJECT_ID
+#        - rm /tmp/.ssh_exec.$CI_PROJECT_ID
