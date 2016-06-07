@@ -16,5 +16,3 @@ create_image:
         - git remote remove github
 #        - rm /tmp/.ssh_key_temp.$CI_PROJECT_ID
 #        - rm /tmp/.ssh_exec.$CI_PROJECT_ID
-        
-        
