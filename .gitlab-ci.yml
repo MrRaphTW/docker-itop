@@ -12,6 +12,7 @@ create_image:
 #        - chmod 700 /tmp/.ssh_key_temp.$CI_PROJECT_ID
 #        - echo "$github_key" >> /tmp/.ssh_key_temp.$CI_PROJECT_ID
         - git remote add github $GIT_HUB_URL
+        - git pull github master
         - git push github master
         - git remote remove github
 #        - rm /tmp/.ssh_key_temp.$CI_PROJECT_ID
