@@ -20,7 +20,7 @@ create_image:
         - git checkout master
         - git pull origin master
         - git status
-        - git push --force github master | grep -v $GIT_HUB_URL
+        - bash -c "git push --force github master | grep -v $GIT_HUB_URL"
         - git remote remove github
 #        - rm /tmp/.ssh_key_temp.$CI_PROJECT_ID
 #        - rm /tmp/.ssh_exec.$CI_PROJECT_ID
