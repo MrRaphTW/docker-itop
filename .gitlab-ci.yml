@@ -16,6 +16,8 @@ create_image:
         - git config --global user.name "TeamWork"        
         - git pull github master
         - git pull origin master
+        - git checkout master
+        - git status
         - git push --force github master
         - git remote remove github
 #        - rm /tmp/.ssh_key_temp.$CI_PROJECT_ID
