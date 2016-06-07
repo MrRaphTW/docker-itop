@@ -1,6 +1,13 @@
 #!/bin/bash
 
+ITOP__SHORT_VERSION=$(echo $ITOP__VERSION| awk -F'.' '{print $1 $2}')
+
 ansible-playbook -i /etc/ansible/hosts /etc/ansible/itop.yml -c local
+
+if [[ $(echo ${ITOP__TOOLKIT} | tr '[A-Z]' '[a-z]') == "yes" ]]
+then
+  ansible-playbook -i /etc/ansible/hosts /etc/ansible/itop-toolkit.yml -c local
+fi
 
 sv d firstrun
 

@@ -1,0 +1,71 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  vars:
+    # iTop Variables
+    itop_version: "{{ lookup('env', 'ITOP__VERSION') }}" # 2.3.0-beta
+    itop_filename: "{{ lookup('env', 'ITOP__FILENAME') }}" # iTop-2.3.0-beta-2777.zip
+    itop_toolkit: "{{ lookup('env', 'ITOP__TOOLKIT') }}"
+    itop_short_version: "{{ lookup('env', 'ITOP__SHORT_VERSION') }}"
+
+
+  tasks:
+  - name: Check if iTop is installed
+    stat:
+      path=/var/www/html/web/images/itop-logo.png
+    register: iTop_is_here
+
+  - name: Download old ToolKit
+    get_url:
+      url=http://www.combodo.com/documentation/iTopDataModelToolkit-2.0.zip
+      dest=/tmp/iTop_Toolkit.zip
+      mode=0440
+    when: (itop_short_version < 13)
+
+  - name: Download new ToolKit
+    get_url:
+      url=http://www.combodo.com/documentation/iTopDataModelToolkit-2.2.zip
+      dest=/tmp/iTop_Toolkit.zip
+      mode=0440
+    when: (itop_short_version >= 13)
+
+  - name: Create ToolKit directory
+    file:
+      path={{ item }}
+      state=directory
+    with_items:
+      - /var/www/html/web/toolkit
+    when: (itop_short_version < 13)
+
+  - name: Install old ToolKit files
+    unarchive:
+      src=/tmp/iTop_Toolkit.zip
+      dest=/var/www/html/web/toolkit
+      copy=no
+    when: (itop_short_version < 13)
+    notify: chown dir
+
+  - name: Install new ToolKit files
+    unarchive:
+      src=/tmp/iTop_Toolkit.zip
+      dest=/var/www/html/web
+      copy=no
+    when: (itop_short_version >= 13)
+    notify: chown dir
+
+  handlers:
+    - name: chown dir
+      file:
+        path=/var/www/html
+        recurse=yes
+        owner="www-data"
+        group="www-data"
+      notify: do clean up
+
+    - name: do clean up
+      file:
+        path=/tmp/{{ item }}
+        state=absent
+      with_items:
+        /tmp/iTop_Toolkit.zip

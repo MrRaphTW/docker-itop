@@ -1,0 +1,19 @@
+extName,extURL,shouldInstall
+ApprovalExtended,http://www.combodo.com/itop-extensions/approval-extended-1.1.3-113.zip,No
+Approval Light,http://www.combodo.com/itop-extensions/approval-light-1.1.3-109.zip,No
+Auto Close Ticket,http://www.combodo.com/itop-extensions/autoclose-ticket-1.0.0-5.zip,No
+Check_mk Data Collector,https://odoo.itomig.de/shop/product/check-mk-collector-126,No
+Customer Survey,http://www.combodo.com/itop-extensions/customer-survey-2.2.0-86.zip,No
+Dispatch Incident,http://www.combodo.com/itop-extensions/dispatch-incident-1.1.1-52.zip,No
+Dispatch User Request,http://www.combodo.com/itop-extensions/dispatch-userrequest-1.1.1-53.zip,No
+Email Reply,http://www.combodo.com/itop-extensions/email-reply-1.1.7-121,No
+Object copier,http://www.combodo.com/itop-extensions/object-copier-1.1.3-118.zip,No
+Precanned Replies,http://www.combodo.com/itop-extensions/precanned-replies-pro-1.0.5-111.zip,No
+Request Templates,http://www.combodo.com/itop-extensions/request-templates-1.0.5-125.zip,No
+SLA with Coverage Windows version 2.1,http://www.combodo.com/itop-extensions/sla-computation-2.1.7-133.zip,No
+Stencils (templating),http://www.combodo.com/itop-extensions/stencils-1.0.7-119.zip,No
+Synchro Dashboard,http://www.combodo.com/itop-extensions/itop-synchro-dashboard-1.0.0-44.zip,No
+TeemIp 2.0.2,https://sourceforge.net/projects/teemip/files/teemip%20-%20an%20iTop%20module/2.0.2/TeemIp-Module-2.0.2.zip,No
+Ticket Creation from eMails,http://www.combodo.com/itop-extensions/ticket-from-email-2.6.10-122.zip,No
+itop-data-collector-base,http://www.combodo.com/itop-extensions/itop-data-collector-base-1.0.10-97.zip,No
+vSphere Data Collector,http://www.combodo.com/itop-extensions/vsphere-data-collector-1.0.4-123.zip,No

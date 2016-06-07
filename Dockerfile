@@ -1,5 +1,5 @@
 FROM phusion/baseimage
-MAINTAINER "Raphaël Charrat <raphael.charrat@teamwork.net>"
+MAINTAINER "Raphaël Charrat <no-reply@teamwork.net>"
 
 ENV APACHE_RUN_USER www-data \
     APACHE_RUN_GROUP www-data \
@@ -11,10 +11,8 @@ RUN echo www-data > /etc/container_environment/APACHE_RUN_USER && \
   echo www-data > /etc/container_environment/APACHE_RUN_GROUP && \
   echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR && \
   echo /var/lock/apache2 > /etc/container_environment/APACHE_LOCK_DIR && \
-  echo /var/run/apache2.pid > /etc/container_environment/APACHE_PID_FILE
-
-
-RUN apt-get update && apt-get -y upgrade && \
+  echo /var/run/apache2.pid > /etc/container_environment/APACHE_PID_FILE && \
+  apt-get update && apt-get -y upgrade && \
   apt-get install -y apache2 php5-gd unzip \
 	libicu-dev unzip zlib1g-dev php5-intl php5 \
   software-properties-common \
@@ -33,13 +31,15 @@ RUN apt-get update && apt-get -y upgrade && \
 VOLUME "/var/www/html"
 
 
-ADD config/000-default.conf /etc/apache2/sites-available/000-default.conf
+ADD config/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 ADD service /etc/service
 ADD config/ansible /etc/ansible
 ADD bug_fixes /bug_fixes
+ADD tools /tools
 
 RUN chmod +x /etc/service/apache/run && \
-    chmod +x /etc/service/firstrun/run
+    chmod +x /etc/service/firstrun/run && \
+    chmod +x /tools/*.sh
 
 
 EXPOSE 80

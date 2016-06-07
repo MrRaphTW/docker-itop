@@ -17,7 +17,7 @@
   tasks:
   - name: Check if iTop is installed
     stat:
-      path=/var/www/html/images/itop-logo.png
+      path=/var/www/html/web/images/itop-logo.png
     register: iTop_is_here
 
   - name: Prepare iTop {{ itop_version }} installation
@@ -52,7 +52,6 @@
       dest=/var/www/html
       copy=no
     when: (iTop_is_here.stat.exists == False) and get_iTop|changed
-    register: install_iTop
     notify: chown dir
 
   handlers:
@@ -66,3 +65,11 @@
 
     - name: restart Apache
       command: sv t apache
+      notify: do clean up
+
+    - name: do clean up
+      file:
+        path=/tmp/{{ item }}
+        state=absent
+      with_items:
+        /tmp/iTop.zip
