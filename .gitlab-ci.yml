@@ -12,6 +12,8 @@ create_image:
 #        - chmod 700 /tmp/.ssh_key_temp.$CI_PROJECT_ID
 #        - echo "$github_key" >> /tmp/.ssh_key_temp.$CI_PROJECT_ID
         - git remote add github $GIT_HUB_URL
+        - git config --global user.email "noreply@teamwork.net"
+        - git config --global user.name "TeamWork"        
         - git pull github master
         - git push github master
         - git remote remove github
