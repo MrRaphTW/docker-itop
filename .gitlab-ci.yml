@@ -1,0 +1,7 @@
+stages:
+    - build
+
+create_image:
+    stage: build
+    script:
+        - cat < $github_key
