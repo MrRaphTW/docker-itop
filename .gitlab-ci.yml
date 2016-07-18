@@ -1,9 +1,12 @@
 stages:
+    - test
     - build
+    - deploy
 
 
 
 test_build_image:
+  stage: test
   image: docker:git
   services:
   - docker:dind
@@ -14,6 +17,7 @@ test_build_image:
 
 
 build_image:
+  stage: deploy
   image: docker:git
   services:
   - docker:dind
