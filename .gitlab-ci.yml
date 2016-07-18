@@ -1,7 +1,32 @@
 stages:
     - build
 
-create_image:
+
+
+test_build_image:
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - docker build .
+  except:
+    - tags
+
+
+build_image:
+  image: docker:git
+  services:
+  - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN git.teamwork.net:5043/docker/itop
+    - docker build -t git.teamwork.net:5043/docker/itop:$CI_BUILD_TAG .
+    - docker push git.teamwork.net:5043/docker/itop:$CI_BUILD_TAG
+  only:
+    - tags
+
+
+
+push_to_github:
     stage: build
     script:
         - bash -c "git remote remove github; exit 0"
