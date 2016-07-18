@@ -1,4 +1,4 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:0.9.15
 MAINTAINER "Raphaël Charrat <no-reply@teamwork.net>"
 
 ENV APACHE_RUN_USER www-data \
