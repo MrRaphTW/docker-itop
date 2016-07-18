@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  test:
+    image: itop:v2.3.0-BETA
+    restart: always
+    networks:
+      - web
+    volumes:
+      - /app/gitlab/data/iTop/test:/var/www/html
+networks:
+  web:
+    external:
+      name: web

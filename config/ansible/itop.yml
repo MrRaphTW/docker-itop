@@ -35,7 +35,7 @@
   - name: Quick and Dirty BugFix
     # https://sourceforge.net/p/itop/tickets/1252/
     copy: src="../../bug_fixes/database exi.png" dest="/var/www/html/web/images/database exi.png"
-    when: (itop_version == '2.3.0-beta') and
+    when: (itop_version == '2.3.0-beta' or itop_version == '2.2.0') and
           (iTop_is_here.stat.exists == False)
 
   - name: Download iTop {{ itop_version }}
@@ -52,7 +52,11 @@
       dest=/var/www/html
       copy=no
     when: (iTop_is_here.stat.exists == False) and get_iTop|changed
+    register: files_in_place
     notify: chown dir
+
+  #- name: Run setup
+  #  when: 
 
   handlers:
     - name: chown dir
@@ -61,6 +65,10 @@
         recurse=yes
         owner="www-data"
         group="www-data"
+      notify: copy installer
+
+    - name: copy installer
+      copy: src=/tools/unattended-install.php dest=/var/www/html/unattended-install.php owner=www-data group=www-data mode=0644
       notify: restart Apache
 
     - name: restart Apache

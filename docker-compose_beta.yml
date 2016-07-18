@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  test:
+    image: itop:v2.3.0-BETA
+    restart: always
+    networks:
+      - frontend
+    volumes:
+      - /app/gitlab/data/iTop/beta:/var/www/html
+networks:
+  frontend:
+    external:
+      name: frontend

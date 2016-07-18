@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<installation>
+  <mode>upgrade</mode>
+  <preinstall>
+    <copies type="array"/>
+    <backup>
+      <destination>/data/web/vpn/itop-2.2.0/web/data/iTop-backup-2016-06-21.zip</destination>
+      <configuration_file>/data/web/vpn/itop-2.2.0/web//conf/production/config-itop.php</configuration_file>
+    </backup>
+  </preinstall>
+  <source_dir>datamodels/2.x/</source_dir>
+  <datamodel_version>2.2.0</datamodel_version>
+  <previous_configuration_file>/data/web/vpn/itop-2.2.0/web//conf/production/config-itop.php</previous_configuration_file>
+  <extensions_dir>extensions</extensions_dir>
+  <target_env>production</target_env>
+  <workspace_dir></workspace_dir>
+  <database>
+    <server>127.0.0.1</server>
+    <user>root</user>
+    <pwd>**removed**</pwd>
+    <name>itop</name>
+    <prefix>itop</prefix>
+  </database>
+  <url>https://itop.teamwork.net/</url>
+  <graphviz_path>/usr/bin/dot</graphviz_path>
+  <admin_account>
+    <user></user>
+    <pwd>**removed**</pwd>
+    <language></language>
+  </admin_account>
+  <language></language>
+  <selected_modules type="array">
+    <item>authent-external</item>
+    <item>authent-ldap</item>
+    <item>authent-local</item>
+    <item>combodo-email-synchro</item>
+    <item>itop-backup</item>
+    <item>itop-config</item>
+    <item>itop-profiles-itil</item>
+    <item>itop-sla-computation</item>
+    <item>itop-tickets</item>
+    <item>itop-welcome-itil</item>
+    <item>templates-base</item>
+    <item>combodo-sla-computation</item>
+    <item>itop-config-mgmt</item>
+    <item>itop-attachments</item>
+    <item>itop-datacenter-mgmt</item>
+    <item>itop-endusers-devices</item>
+    <item>itop-storage-mgmt</item>
+    <item>itop-virtualization-mgmt</item>
+    <item>itop-bridge-virtualization-storage</item>
+    <item>itop-service-mgmt-provider</item>
+    <item>itop-request-mgmt-itil</item>
+    <item>itop-incident-mgmt-itil</item>
+    <item>itop-change-mgmt-itil</item>
+    <item>itop-knownerror-mgmt</item>
+    <item>itop-problem-mgmt</item>
+    <item>combodo-autoclose-ticket</item>
+    <item>email-reply</item>
+    <item>itop-simple-email-synchro</item>
+    <item>pc-avec-fiches-installation</item>
+    <item>sample-add-attribute</item>
+    <item>add-ip-enclosure</item>
+    <item>ip-field-hypervisor</item>
+    <item>time-tracking</item>
+    <item>combodo-coverage-windows-computation-incident</item>
+    <item>combodo-coverage-windows-computation</item>
+    <item>itop-request-template</item>
+  </selected_modules>
+  <sample_data></sample_data>
+  <old_addon></old_addon>
+  <options type="array"/>
+</installation>

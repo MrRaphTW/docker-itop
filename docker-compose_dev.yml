@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  dev:
+    image: localhost:5000/itop:2.2.1
+    restart: always
+    networks:
+      - frontend
+    volumes:
+      - /app/gitlab/data/iTop/dev:/var/www/html
+networks:
+  web:
+    external:
+      name: frontend
