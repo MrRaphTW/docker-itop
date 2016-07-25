@@ -35,8 +35,8 @@
   - name: Quick and Dirty BugFix
     # https://sourceforge.net/p/itop/tickets/1252/
     copy: src="../../bug_fixes/database exi.png" dest="/var/www/html/web/images/database exi.png"
-    when: (itop_version == '2.3.0-beta' or itop_version == '2.2.0') and
-          (iTop_is_here.stat.exists == False)
+    #when: (itop_version == '2.3.0-beta' or itop_version == '2.2.0') and
+    #      (iTop_is_here.stat.exists == False)
 
   - name: Download iTop {{ itop_version }}
     get_url:
